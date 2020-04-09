@@ -12,11 +12,12 @@ connection = pymysql.connect(host='localhost',
 
 try:
     #  Run a query       
-    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
-        sql = "SELECT * FROM Genre;"
+    with connection.cursor() as cursor:
+        sql = "SELECT * FROM Artist;"
         cursor.execute(sql)
-        for row in cursor:
-            print(row)
+        result = cursor.fetchall()
+        print(result)
 finally:
     # Close the connection. regardless of whether the above was successfull
     connection.close()
+
