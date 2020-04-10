@@ -13,11 +13,8 @@ connection = pymysql.connect(host='localhost',
 try:
     #  Run a query       
      with connection.cursor() as cursor:
-        rows=[('Bob', 21, '1990-02-06 23:04:56'),
-            ('Jim', 56, '1955-02-06 22:04:56'),
-            ('Fred', 100, '1911-02-06 21:04:56')]
-        
-        cursor.executemany('INSERT INTO Friends VALUES(%s, %s, %s);', rows)
+        row=('BOB', 21, '1990-02-06 23:04:56')
+        cursor.execute('INSERT INTO Friends VALUES(%s,%s,%s);', row)
         connection.commit()
         
 finally:

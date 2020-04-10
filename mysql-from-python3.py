@@ -12,14 +12,11 @@ connection = pymysql.connect(host='localhost',
 
 try:
     #  Run a query       
-     with connection.cursor() as cursor:
-        rows=[('Bob', 21, '1990-02-06 23:04:56'),
-            ('Jim', 56, '1955-02-06 22:04:56'),
-            ('Fred', 100, '1911-02-06 21:04:56')]
-        
-        cursor.executemany('INSERT INTO Friends VALUES(%s, %s, %s);', rows)
-        connection.commit()
-        
+    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+        sql = "SELECT * FROM Genre;"
+        cursor.execute(sql)
+        for row in cursor:
+            print(row)
 finally:
     # Close the connection. regardless of whether the above was successfull
     connection.close()
