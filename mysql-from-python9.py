@@ -13,8 +13,7 @@ connection = pymysql.connect(host='localhost',
 try:
     #  Run a query       
      with connection.cursor() as cursor:
-        names = ['jim','bob']
-        row = cursor.execute("DELETE FROM Friends WHERE name in (%s,%s)", names)
+        cursor.execute("UPDATE Friends SET age = %s WHERE name = %s;", (23,'Bob'))
         connection.commit()
         
 finally:
